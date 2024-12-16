@@ -6,27 +6,39 @@
 <body>
     <%@ include file="header.jsp" %> <!-- Inclusion du header -->
 
-<h2>Fiche du Réfrigérateur</h2>
-<p><strong>Nom :</strong> ${refrigerateur.nom}</p>
-<p><strong>Température :</strong> ${refrigerateur.temperature} °C</p>
-<h3>Produits :</h3>
-<ul>
-    <% 
-        // Récupérer la Map des produits passée depuis le servlet
-        java.util.Map<String, Integer> produits = (java.util.Map<String, Integer>) request.getAttribute("refrigerateur.produits");
-        if (produits != null) {
-            // Parcourir la Map et afficher les produits
-            for (java.util.Map.Entry<String, Integer> entry : produits.entrySet()) {
+    <h2>Fiche du Réfrigérateur</h2>
+    
+    <%
+        // Récupérer l'objet Réfrigérateur depuis la requête
+        beans.Refrigerateur refrigerateur = (beans.Refrigerateur) request.getAttribute("refrigerateur");
+        if (refrigerateur != null) {
     %>
-                <li><%= entry.getKey() %> : <%= entry.getValue() %> unités</li>
-    <% 
-            }
+        <p><strong>Nom :</strong> <%= refrigerateur.getNom() %></p>
+        <p><strong>Température :</strong> <%= refrigerateur.getTemperature() %> °C</p>
+        
+        <h3>Produits :</h3>
+        <ul>
+            <%
+                java.util.Map<String, Integer> produits = refrigerateur.getProduits();
+                if (produits != null && !produits.isEmpty()) {
+                    for (java.util.Map.Entry<String, Integer> entry : produits.entrySet()) {
+            %>
+                        <li><%= entry.getKey() %> : <%= entry.getValue() %> unités</li>
+            <%
+                    }
+                } else {
+            %>
+                    <li>Aucun produit ajouté.</li>
+            <%
+                }
+            %>
+        </ul>
+    <%
         } else {
     %>
-            <li>Aucun produit ajouté.</li>
-    <% 
+        <p><strong>Erreur :</strong> Réfrigérateur introuvable.</p>
+    <%
         }
     %>
-</ul>
 </body>
 </html>

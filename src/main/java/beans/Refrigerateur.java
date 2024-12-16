@@ -3,7 +3,7 @@ package beans;
 import java.util.HashMap;
 
 public class Refrigerateur {
-	 private static int idCounter = 0;
+	 private static int idCounter = 1;
     private int id;
     private String nom;
     private double temperature;
@@ -15,7 +15,8 @@ public class Refrigerateur {
     }
     
     
- 
+   
+
     // Getters and Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
