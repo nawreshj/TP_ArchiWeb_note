@@ -70,7 +70,7 @@ public class RefrigerateurServlet extends HttpServlet {
         request.setAttribute("refrigerateur.produits", refrigerateur.getProduits());
         request.setAttribute("refrigerateur", refrigerateur);
 
-        // Rediriger vers la page "ficheRefrigerateur.jsp"
+        // Rediriger vers la page "ficheRefrigerateur.jsp" test commit
         RequestDispatcher dispatcher = request.getRequestDispatcher("ficheRefrigerateur.jsp");
         dispatcher.forward(request, response);
     }
