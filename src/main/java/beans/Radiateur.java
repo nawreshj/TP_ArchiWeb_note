@@ -1,6 +1,7 @@
 package beans;
 
 public class Radiateur {
+	private static int compteur = 0;
     private int id;
     private String nom;
     private double temperatureDesiree;
@@ -9,6 +10,11 @@ public class Radiateur {
     private String heureFin;
     private double consommationEnergetique;
     private boolean etat;
+    
+    
+    public Radiateur() {
+        this.id = ++compteur; // Génération de l'identifiant unique
+    }
  
     // Getters and Setters
     public int getId() { return id; }
